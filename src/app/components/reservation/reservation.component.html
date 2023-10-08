@@ -1,0 +1,56 @@
+<div class="reservation-container">
+  <div class="reservation-header">
+    <button class="back-button" (click)="backToPreviousPage()">
+      <ng-icon class="back-icon" name="featherArrowLeft"></ng-icon>
+    </button>
+    <h1>Reservation</h1>
+    <div></div>
+
+  </div>
+  <app-vehicle-card class="vehicle-card" [vehicle]="vehicle!" [disabled]="true"></app-vehicle-card>
+
+  <div class="reservation-start-container">
+    <span class="title">
+      Date de début
+    </span>
+    <mat-form-field appearance="fill" class="mat-app-background">
+      <input readonly="" matInput [ngxMatDatetimePicker]="startPicker" (dateChange)="handleDateChange($event)"
+        placeholder="Choisissez une date de début" [min]="minDate"
+        [max]="getMinReservationData(endDateController.value)" [formControl]="startDateController" [disabled]="true">
+      <mat-datepicker-toggle matSuffix [for]="$any(startPicker)"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #startPicker [showSpinners]="true" [showSeconds]="false" [enableMeridian]="false"
+        [disableMinute]="true" [hideTime]="false">
+        <ngx-mat-datepicker-actions>
+          <button mat-button ngxMatDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="warn" ngxMatDatepickerApply>Apply</button>
+        </ngx-mat-datepicker-actions>
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+  </div>
+
+  <div class="reservation-end-container">
+    <span class="title">
+      Date de fin
+    </span>
+    <mat-form-field appearance="fill" class="mat-app-background">
+      <input readonly="" matInput [ngxMatDatetimePicker]="endPicker" (dateChange)="handleDateChange($event)"
+        placeholder="Choisissez une date de fin" [min]="getMaxReservationData(startDateController.value)"
+        [formControl]="endDateController" [disabled]="true">
+      <mat-datepicker-toggle matSuffix [for]="$any(endPicker)"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #endPicker [showSpinners]="true" [showSeconds]="false" [enableMeridian]="false"
+        [disableMinute]="true" [hideTime]="false">
+        <ngx-mat-datepicker-actions>
+          <button mat-button ngxMatDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="warn" ngxMatDatepickerApply>Apply</button>
+        </ngx-mat-datepicker-actions>
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+  </div>
+  <div class="error">
+    <span>{{errorMessage}}</span>
+  </div>
+  <div class="footer">
+    <h4 class="cost">Coût: {{reservationCost}}€ pour {{numberOfDays}} jour{{numberOfDays > 1 ? 's': ''}}</h4>
+    <button [disabled]="submitDisabled" (click)="handleSubmitReservation()">Reserver</button>
+  </div>
+</div>
