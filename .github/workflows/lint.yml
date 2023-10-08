@@ -1,0 +1,30 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: e2e test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: install angular cli
+        run: |
+          npm install -g @angular/cli
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run e2e tests
+        run: |
+          ng e2e --headless --watch false
+          
