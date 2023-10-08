@@ -1,0 +1,22 @@
+<div class="list-stations">
+  <h1>Liste des stations</h1>
+
+  <ng-container *ngIf="loading">
+    <p>Chargement de la liste des stations...</p>
+  </ng-container>
+  <ng-container *ngIf="error">
+    <p>{{ error }}</p>
+  </ng-container>
+  <ul *ngIf="!loading && !error">
+    <li *ngFor="let station of stations">
+      <div class="card-list-stations" [class.selected]="station.name == selectedStationName"
+        (click)="selectStation(station)">
+        <span class="card-list-stations-title">{{station.name}}</span>
+        <div class="card-list-stations-main">
+          <span class="address">{{station.address}}</span>
+          <span class="available-places">place disponibles: {{station.places}}</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

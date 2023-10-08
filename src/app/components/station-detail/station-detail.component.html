@@ -1,0 +1,17 @@
+<div class="station-detail-container">
+  <h1>Liste des véhicules</h1>
+  <ng-container *ngIf="!station; else vehicleList">
+    <div class="station-detail-default">
+      <p>Sélectionnez une station</p>
+    </div>
+  </ng-container>
+
+  <ng-template #vehicleList>
+    <ul class="list-vehicles">
+      <li *ngFor="let vehicle of station?.vehicles">
+        <app-vehicle-card [vehicle]="vehicle" [stationName]="station?.name"></app-vehicle-card>
+
+      </li>
+    </ul>
+  </ng-template>
+</div>

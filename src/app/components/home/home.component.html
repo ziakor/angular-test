@@ -1,0 +1,5 @@
+<div class="home-container">
+  <app-stations-list [selectedStationName]="selectedStation?.name"
+    (selectedStation)="selectedStation= $event"></app-stations-list>
+  <app-station-detail [station]="selectedStation"></app-station-detail>
+</div>

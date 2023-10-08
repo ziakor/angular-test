@@ -1,0 +1,12 @@
+<div class="vehicle-card" (click)="!disabled ? goToReservation(vehicle): null">
+  <div class="vehicle-card-header">
+    <img src={{vehicle.photo}} />
+  </div>
+  <div class="vehicle-card-content">
+    <p><span>modele: </span>{{vehicle.model}}</p>
+    <p><span>etat: </span>{{vehicle.condition}}</p>
+    <p><span>note: </span>{{vehicle.rating}}/5</p>
+    <p><span>type: </span>{{vehicle.fuelType}}</p>
+    <p><span>Cout: </span>{{vehicle.pricePerHour}} €/heure</p>
+  </div>
+</div>
